@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+
+  <parent>
+    <groupId>com.soebes.smpp</groupId>
+    <artifactId>smpp</artifactId>
+    <version>7.0.5</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>com.soebes.examples.j2ee</groupId>
+  <artifactId>jee-parent</artifactId>
+  <version>3.1.4-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <log4j.version>1.2.16</log4j.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.10.1</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-bom</artifactId>
+        <version>3.25.2</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.20.0</version>
+      </dependency>
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>6.0</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <subprojects>
+    <subproject>assembly</subproject>
+    <subproject>shade</subproject>
+    <subproject>webgui</subproject>
+    <subproject>app</subproject>
+    <subproject>domain</subproject>
+    <subproject>service</subproject>
+    <subproject>service-client</subproject>
+    <subproject>appasm</subproject>
+  </subprojects>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.soebes.maven.plugins</groupId>
+        <artifactId>echo-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>before-ready</id>
+            <phase>before:ready</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'before:ready' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+          <execution>
+            <id>ready</id>
+            <phase>ready</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'ready' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+          <execution>
+            <id>after-ready</id>
+            <phase>after:ready</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'after:ready' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+          <execution>
+            <inherited>false</inherited>
+            <id>before-all</id>
+            <phase>before:all</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'before:all' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+          <execution>
+            <id>all</id>
+            <phase>all</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'all' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+          <execution>
+            <inherited>false</inherited>
+            <id>after-all</id>
+            <phase>after:all</phase>
+            <goals>
+              <goal>echo</goal>
+            </goals>
+            <configuration>
+              <echos>
+                <echo>Hello 'after:all' phase.</echo>
+              </echos>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
